@@ -202,10 +202,13 @@ class OculusReader:
 def main():
     oculus_reader = OculusReader()
 
+    timeout = time.time() + 60 # one minute
     while True:
         time.sleep(0.3)
         print(oculus_reader.get_transformations_and_buttons())
-
+        
+        if time.time() > timeout:
+            sys.exit(0)
 
 if __name__ == '__main__':
     main()
